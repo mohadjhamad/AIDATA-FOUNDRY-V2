@@ -1,0 +1,133 @@
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { base44 } from '@/api/base44Client';
+import { appParams } from '@/lib/app-params';
+import { createAxiosClient } from '@base44/sdk/dist/utils/axios-client';
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
+  const [isLoadingPublicSettings, setIsLoadingPublicSettings] = useState(true);
+  const [authError, setAuthError] = useState(null);
+  const [appPublicSettings, setAppPublicSettings] = useState(null); // Contains only { id, public_settings }
+
+  useEffect(() => {
+    checkAppState();
+  }, []);
+
+  const checkAppState = async () => {
+    try {
+      setIsLoadingPublicSettings(true);
+      setAuthError(null);
+
+      // If an app token is present, attempt to verify auth.
+      // If the Base44 backend is unreachable (e.g. standalone Cloudflare deployment),
+      // we simply treat the app as public and continue rendering.
+      if (appParams.appId) {
+        try {
+          const appClient = createAxiosClient({
+            baseURL: `/api/apps/public`,
+            headers: { 'X-App-Id': appParams.appId },
+            token: appParams.token,
+            interceptResponses: true
+          });
+          const publicSettings = await appClient.get(`/prod/public-settings/by-id/${appParams.appId}`);
+          setAppPublicSettings(publicSettings);
+
+          if (appParams.token) {
+            await checkUserAuth();
+          } else {
+            setIsLoadingAuth(false);
+            setIsAuthenticated(false);
+          }
+        } catch (appError) {
+          console.warn('Base44 API unavailable – running in standalone mode:', appError?.message);
+          // In standalone mode (e.g. Cloudflare Pages without Base44 backend),
+          // treat as a public, unauthenticated app and render normally.
+          if (appError?.status === 403 && appError?.data?.extra_data?.reason === 'user_not_registered') {
+            setAuthError({ type: 'user_not_registered', message: 'User not registered for this app' });
+          }
+          setIsLoadingAuth(false);
+          setIsAuthenticated(false);
+        }
+      } else {
+        // No appId configured – skip auth check entirely
+        setIsLoadingAuth(false);
+        setIsAuthenticated(false);
+      }
+
+      setIsLoadingPublicSettings(false);
+    } catch (error) {
+      console.error('Unexpected error in checkAppState:', error);
+      setIsLoadingPublicSettings(false);
+      setIsLoadingAuth(false);
+    }
+  };
+
+  const checkUserAuth = async () => {
+    try {
+      // Now check if the user is authenticated
+      setIsLoadingAuth(true);
+      const currentUser = await base44.auth.me();
+      setUser(currentUser);
+      setIsAuthenticated(true);
+      setIsLoadingAuth(false);
+    } catch (error) {
+      console.error('User auth check failed:', error);
+      setIsLoadingAuth(false);
+      setIsAuthenticated(false);
+      
+      // If user auth fails, it might be an expired token
+      if (error.status === 401 || error.status === 403) {
+        setAuthError({
+          type: 'auth_required',
+          message: 'Authentication required'
+        });
+      }
+    }
+  };
+
+  const logout = (shouldRedirect = true) => {
+    setUser(null);
+    setIsAuthenticated(false);
+    
+    if (shouldRedirect) {
+      // Use the SDK's logout method which handles token cleanup and redirect
+      base44.auth.logout(window.location.href);
+    } else {
+      // Just remove the token without redirect
+      base44.auth.logout();
+    }
+  };
+
+  const navigateToLogin = () => {
+    // Use the SDK's redirectToLogin method
+    base44.auth.redirectToLogin(window.location.href);
+  };
+
+  return (
+    <AuthContext.Provider value={{ 
+      user, 
+      isAuthenticated, 
+      isLoadingAuth,
+      isLoadingPublicSettings,
+      authError,
+      appPublicSettings,
+      logout,
+      navigateToLogin,
+      checkAppState
+    }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
