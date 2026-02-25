@@ -189,7 +189,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}>
             <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/1f17f1835_ChatGPTImageFeb16202607_05_28PM.png"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/2f593fdc8_ChatGPTImageFeb17202610_05_20PM.png"
               alt="AI Data Foundry"
               className="h-24 md:h-16 w-auto" />
           </motion.div>
@@ -203,7 +203,6 @@ export default function HeroSection() {
             <a href="#services" className="text-slate-300 hover:text-white transition-colors">Services</a>
             <a href="#process" className="text-slate-300 hover:text-white transition-colors">Process</a>
             <a href="#industries" className="text-slate-300 hover:text-white transition-colors">Industries</a>
-            <Link to={createPageUrl('Blog')} onClick={() => window.scrollTo(0, 0)} className="text-slate-300 hover:text-white transition-colors">Blog</Link>
             <Link to={createPageUrl('About')} onClick={() => window.scrollTo(0, 0)} className="text-slate-300 hover:text-white transition-colors">About</Link>
             <Link to={createPageUrl('Contact')} onClick={() => window.scrollTo(0, 0)}>
               <Button className="bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-500 hover:to-orange-400 text-white border-0">
@@ -239,7 +238,6 @@ export default function HeroSection() {
                   <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 hover:text-white transition-colors text-lg">Services</a>
                   <a href="#process" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 hover:text-white transition-colors text-lg">Process</a>
                   <a href="#industries" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 hover:text-white transition-colors text-lg">Industries</a>
-                  <Link to={createPageUrl('Blog')} onClick={() => { window.scrollTo(0, 0); setMobileMenuOpen(false); }} className="text-slate-300 hover:text-white transition-colors text-lg">Blog</Link>
                   <Link to={createPageUrl('About')} onClick={() => { window.scrollTo(0, 0); setMobileMenuOpen(false); }} className="text-slate-300 hover:text-white transition-colors text-lg">About</Link>
                   <Link to={createPageUrl('Contact')} onClick={() => { window.scrollTo(0, 0); setMobileMenuOpen(false); }}>
                     <Button className="w-full bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-500 hover:to-orange-400 text-white border-0 mt-4">
@@ -254,7 +252,7 @@ export default function HeroSection() {
       </nav>
       
       {/* Hero content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-32 md:pt-0">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-20 md:pt-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -262,7 +260,7 @@ export default function HeroSection() {
 
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm mb-8 mt-32"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3 }}>
