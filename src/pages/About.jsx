@@ -39,7 +39,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link to={createPageUrl('Home')} className="flex items-center gap-3">
             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/1f17f1835_ChatGPTImageFeb16202607_05_28PM.png" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/2f593fdc8_ChatGPTImageFeb17202610_05_20PM.png" 
               alt="AI Data Foundry" 
               className="h-16 w-auto"
             />
@@ -204,48 +204,6 @@ export default function About() {
                   >
                     Read Article →
                   </a>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Architecture Diagrams */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            className="mb-20"
-          >
-            <h2 className="text-3xl font-bold text-white mb-8 text-center">Architecture Diagrams</h2>
-            <div className="space-y-8">
-              <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-10">
-                <h3 className="text-2xl font-semibold text-white mb-4">Lakehouse Architecture Diagram</h3>
-                <div className="flex items-center justify-center">
-                  <img 
-                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/511fe17e6_enterprise_lakehouse_architecture.png" 
-                    alt="Enterprise Lakehouse Architecture"
-                    className="max-w-full h-auto rounded-xl"
-                  />
-                </div>
-              </div>
-              <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-10">
-                <h3 className="text-2xl font-semibold text-white mb-4">Databricks Platform Architecture Diagram</h3>
-                <div className="flex items-center justify-center">
-                  <img 
-                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/8ccc121f2_databricks_platform_architecture.png" 
-                    alt="Databricks Platform Architecture"
-                    className="max-w-full h-auto rounded-xl"
-                  />
-                </div>
-              </div>
-              <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-10">
-                <h3 className="text-2xl font-semibold text-white mb-4">AI Platform Pipeline Architecture Diagram</h3>
-                <div className="flex items-center justify-center">
-                  <img 
-                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/b18548f54_ai_platform_pipeline.png" 
-                    alt="AI Platform Pipeline Architecture"
-                    className="max-w-full h-auto rounded-xl"
-                  />
                 </div>
               </div>
             </div>
