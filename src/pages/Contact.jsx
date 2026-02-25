@@ -48,7 +48,7 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link to={createPageUrl('Home')} className="flex items-center gap-3">
             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/1f17f1835_ChatGPTImageFeb16202607_05_28PM.png" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/2f593fdc8_ChatGPTImageFeb17202610_05_20PM.png" 
               alt="AI Data Foundry" 
               className="h-16 w-auto"
             />
