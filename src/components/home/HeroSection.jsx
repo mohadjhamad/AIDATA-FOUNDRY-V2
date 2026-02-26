@@ -183,7 +183,7 @@ export default function HeroSection() {
       
       {/* Navigation */}
       <nav className="absolute top-0 left-0 right-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <motion.div
             className="flex items-center gap-3"
             initial={{ opacity: 0, x: -20 }}
@@ -191,7 +191,7 @@ export default function HeroSection() {
             <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698d38bc97fec5d215c3ea55/2f593fdc8_ChatGPTImageFeb17202610_05_20PM.png"
               alt="AI Data Foundry"
-              className="h-24 md:h-16 w-auto" />
+              className="h-20 md:h-20 w-auto" />
           </motion.div>
           
           {/* Desktop Menu */}
@@ -252,7 +252,7 @@ export default function HeroSection() {
       </nav>
       
       {/* Hero content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-20 md:pt-0">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-20 md:pt-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -260,7 +260,7 @@ export default function HeroSection() {
 
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm mb-8 mt-32"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm mb-8 mt-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3 }}>
